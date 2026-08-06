@@ -59,11 +59,14 @@ FOUNDER_LINE = "Founder, Lucè Packaging"
 # ---------------------------------------------------------------------------
 
 # Your custom domain, WITHOUT https:// and WITHOUT a trailing slash.
-#   e.g. "lucepackaging.com"
 #
-# Leave as None until you have one — the site still builds and works, it just
-# won't emit a CNAME file and the sitemap will use GITHUB_PAGES_URL instead.
-DOMAIN = 'lucepackagingsolutions.com'
+# Keep this None until the DNS records actually point at GitHub. A CNAME file
+# makes GitHub Pages redirect the github.io address to the custom domain — so
+# setting this before DNS is ready takes the site offline at BOTH addresses.
+#
+# When the DNS is live, swap the two lines below and rebuild.
+DOMAIN = None
+# DOMAIN = "lucepackagingsolutions.com"
 
 # Your GitHub username and repo name. Used for the DNS instructions build.py
 # prints, and — while DOMAIN is None — to build GITHUB_PAGES_URL below, which
@@ -73,7 +76,9 @@ GITHUB_USER = "SKumarAshutosh"
 GITHUB_REPO = "luce-packaging-web"
 
 # Fallback address used when DOMAIN is None.
-GITHUB_PAGES_URL = f"https://{GITHUB_USER}.github.io/{GITHUB_REPO}"
+# The host is lowercased because that is the form GitHub Pages actually serves;
+# the repo path keeps its case, since that part IS case-sensitive.
+GITHUB_PAGES_URL = f"https://{GITHUB_USER.lower()}.github.io/{GITHUB_REPO}"
 
 
 def base_url() -> str:

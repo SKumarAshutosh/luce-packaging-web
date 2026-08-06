@@ -63,7 +63,7 @@ FOUNDER_LINE = "Founder, Lucè Packaging"
 #
 # Leave as None until you have one — the site still builds and works, it just
 # won't emit a CNAME file and the sitemap will use GITHUB_PAGES_URL instead.
-DOMAIN = None
+DOMAIN = 'lucepackagingsolutions.com'
 
 # Your GitHub username — used only in the DNS instructions build.py prints.
 GITHUB_USER = "your-username"

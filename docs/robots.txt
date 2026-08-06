@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-username.github.io/luce-packaging/sitemap.xml
+Sitemap: https://lucepackagingsolutions.com/sitemap.xml

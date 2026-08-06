@@ -65,9 +65,12 @@ FOUNDER_LINE = "Founder, Lucè Packaging"
 # won't emit a CNAME file and the sitemap will use GITHUB_PAGES_URL instead.
 DOMAIN = 'lucepackagingsolutions.com'
 
-# Your GitHub username — used only in the DNS instructions build.py prints.
-GITHUB_USER = "your-username"
-GITHUB_REPO = "luce-packaging"
+# Your GitHub username and repo name. Used for the DNS instructions build.py
+# prints, and — while DOMAIN is None — to build GITHUB_PAGES_URL below, which
+# every canonical / sitemap / Open Graph URL is derived from. Get these wrong
+# and those URLs point at a page that doesn't exist.
+GITHUB_USER = "SKumarAshutosh"
+GITHUB_REPO = "luce-packaging-web"
 
 # Fallback address used when DOMAIN is None.
 GITHUB_PAGES_URL = f"https://{GITHUB_USER}.github.io/{GITHUB_REPO}"

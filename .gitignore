@@ -1,3 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# NOTE: docs/ is intentionally NOT ignored.
+# It is the build output, and GitHub Pages serves the site straight from it —
+# so it has to be committed. Run `python build.py` before you commit.
+
 # OS cruft
 Thumbs.db
 ehthumbs.db

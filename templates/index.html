@@ -1,0 +1,371 @@
+{% extends "base.html" %}
+{% from "macros.html" import icon, amp, sun, wa_icon %}
+
+{% block head_extra %}
+<!-- LocalBusiness structured data — helps you show up in Google -->
+<script type="application/ld+json">{{ json_ld }}</script>
+{% endblock %}
+
+{% block main %}
+<main id="main">
+
+<!-- ============================================ HERO -->
+<section class="hero" id="top">
+  <div class="hero__flutes" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+
+    <div class="hero__copy">
+      <p class="eyebrow reveal">{{ hero.eyebrow }}</p>
+      <h1 class="reveal">
+        {{ amp(hero.heading) }}
+        <em>{{ hero.heading_em }}</em>
+      </h1>
+      <p class="lede reveal">{{ hero.lede }}</p>
+
+      <div class="hero__cta reveal">
+        <a class="btn btn--primary btn--lg" href="#quote">
+          Request a Quote
+          {{ icon('arrow') }}
+        </a>
+        <a class="btn btn--ghost btn--lg" href="#products">Browse Products</a>
+      </div>
+
+      <ul class="hero__ticks reveal">
+        {%- for tick in hero.ticks %}
+        <li>{{ tick }}</li>
+        {%- endfor %}
+      </ul>
+    </div>
+
+    <!-- Pure-CSS 3D corrugated box -->
+    <div class="hero__art" aria-hidden="true">
+      <div class="scene">
+        <div class="box3d">
+          <div class="face face--top">
+            <span class="tape"></span>
+            <svg class="face__mark" viewBox="0 0 64 64"><ellipse cx="32" cy="32" rx="15" ry="16" fill="#D9902A" opacity=".85"/></svg>
+          </div>
+          <div class="face face--front">
+            <div class="stencil">
+              <span class="stencil__word">Luc<i>è</i></span>
+              <span class="stencil__meta">5 PLY · FRAGILE · THIS SIDE UP</span>
+            </div>
+          </div>
+          <div class="face face--side"><span class="flutes"></span></div>
+        </div>
+        <div class="box3d box3d--small">
+          <div class="face face--top"></div>
+          <div class="face face--front"></div>
+          <div class="face face--side"><span class="flutes"></span></div>
+        </div>
+        <div class="scene__shadow"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <dl class="stats reveal">
+      {%- for stat in stats %}
+      <div class="stat">
+        <dt>{{ stat.label }}</dt>
+        <dd>{{ stat.prefix|default('') }}<span data-count="{{ stat.count }}">{{ stat.count }}</span>{{ stat.suffix }}</dd>
+      </div>
+      {%- endfor %}
+    </dl>
+  </div>
+</section>
+
+<!-- ============================================ MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {#- Rendered twice: the CSS animation translates the track by -50%, so the
+        second copy is what keeps the strip seamless as it loops. -#}
+    {%- for _ in range(2) %}
+    {%- for item in marquee %}
+    <span>{{ item }}</span><i>◆</i>
+    {%- endfor %}
+    {%- endfor %}
+  </div>
+</div>
+
+<!-- ============================================ PRODUCTS -->
+<section class="section" id="products">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">{{ products_intro.eyebrow }}</p>
+      <h2>{{ amp(products_intro.heading) }}</h2>
+      <p class="sec-head__sub">{{ products_intro.sub }}</p>
+    </header>
+
+    <div class="cards">
+      {%- for p in products %}
+      <article class="card reveal">
+        <div class="card__media">
+          <img src="static/img/{{ p.image }}" alt="{{ p.alt }}" loading="lazy" width="480" height="360">
+        </div>
+        <div class="card__body">
+          <p class="card__tag">{{ p.tag }}</p>
+          <h3>{{ amp(p.title) }}</h3>
+          <p>{{ p.body|safe }}</p>
+          <ul class="card__list">
+            {%- for point in p.points %}
+            <li>{{ point }}</li>
+            {%- endfor %}
+          </ul>
+          <a class="link-arrow" href="#quote">Get pricing{{ icon('arrow') }}</a>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ SPECS -->
+<section class="section section--kraft" id="specs">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">{{ specs_intro.eyebrow }}</p>
+      <h2>{{ amp(specs_intro.heading) }}</h2>
+      <p class="sec-head__sub">{{ specs_intro.sub }}</p>
+    </header>
+
+    <div class="table-scroll reveal">
+      <table class="spec-table">
+        <caption class="sr-only">Corrugated board specifications by ply count</caption>
+        <thead>
+          <tr>
+            {%- for col in spec_columns %}
+            <th scope="col">{{ col }}</th>
+            {%- endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {%- for row in spec_rows %}
+          <tr>
+            <th scope="row"><span class="ply-chip {{ row.ply_class }}">{{ row.ply }}</span></th>
+            {%- for cell in row.cells %}
+            <td>{{ cell }}</td>
+            {%- endfor %}
+          </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="spec-notes reveal">
+      {%- for note in spec_notes %}
+      <div class="note">
+        <h4>{{ note.title }}</h4>
+        <p>{{ note.body }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ CAPABILITIES -->
+<section class="section" id="capability">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">{{ capability_intro.eyebrow }}</p>
+      <h2>{{ amp(capability_intro.heading) }}</h2>
+    </header>
+
+    <div class="feature-grid">
+      {%- for f in features %}
+      <div class="feature reveal">
+        {{ icon(f.icon, cls='feature__ico') }}
+        <h3>{{ amp(f.title) }}</h3>
+        <p>{{ f.body }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ PROCESS -->
+<section class="section section--dark" id="process">
+  <div class="wrap">
+    <header class="sec-head sec-head--light reveal">
+      <p class="eyebrow">{{ process_intro.eyebrow }}</p>
+      <h2>{{ amp(process_intro.heading) }}</h2>
+    </header>
+
+    <ol class="steps">
+      {%- for step in steps %}
+      <li class="step reveal">
+        <span class="step__num">{{ '%02d'|format(loop.index) }}</span>
+        <h3>{{ amp(step.title) }}</h3>
+        <p>{{ step.body }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================ ABOUT -->
+<section class="section" id="about">
+  <div class="wrap about">
+    <div class="about__copy reveal">
+      <p class="eyebrow">{{ about.eyebrow }}</p>
+      <h2>{{ amp(about.heading) }}</h2>
+      {%- for para in about.paragraphs %}
+      <p>{{ para|safe }}</p>
+      {%- endfor %}
+
+      <ul class="about__points">
+        {%- for label, rest in about.points %}
+        <li><strong>{{ label }}</strong> — {{ rest }}</li>
+        {%- endfor %}
+      </ul>
+
+      <a class="btn btn--primary" href="#quote">Talk to us</a>
+    </div>
+
+    <aside class="about__panel reveal">
+      <div class="panel-card">
+        {{ sun(cls='panel-card__sun', animate=False) }}
+        <blockquote>&ldquo;{{ about.quote }}&rdquo;</blockquote>
+        <p class="panel-card__by">{{ cfg.FOUNDER_LINE }}</p>
+      </div>
+
+      <div class="mini-grid">
+        {%- for title, sub in about.minis %}
+        <div class="mini"><strong>{{ title }}</strong><span>{{ sub }}</span></div>
+        {%- endfor %}
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============================================ FAQ -->
+<section class="section section--kraft" id="faq">
+  <div class="wrap wrap--narrow">
+    <header class="sec-head reveal">
+      <p class="eyebrow">{{ faq_intro.eyebrow }}</p>
+      <h2>{{ amp(faq_intro.heading) }}</h2>
+    </header>
+
+    <div class="faq reveal">
+      {%- for item in faqs %}
+      <details>
+        <summary>{{ amp(item.q) }}</summary>
+        <p>{{ item.a }}</p>
+      </details>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ QUOTE -->
+<section class="section" id="quote">
+  <div class="wrap">
+    <div class="quote">
+
+      <div class="quote__intro reveal">
+        <p class="eyebrow">{{ quote_intro.eyebrow }}</p>
+        <h2>{{ amp(quote_intro.heading) }}</h2>
+        <p class="lede">{{ quote_intro.lede }}</p>
+
+        <ul class="quote__contact">
+          <li>
+            <span class="quote__ico">{{ icon('phone') }}</span>
+            <div><strong>Call</strong><a href="tel:{{ cfg.PHONE_DIAL }}">{{ cfg.PHONE_DISPLAY }}</a></div>
+          </li>
+          <li>
+            <span class="quote__ico">{{ icon('mail') }}</span>
+            <div><strong>Email</strong><a href="mailto:{{ cfg.EMAIL }}">{{ cfg.EMAIL }}</a></div>
+          </li>
+          <li>
+            <span class="quote__ico">{{ icon('pin') }}</span>
+            <div><strong>Works</strong><span>{{ cfg.ADDRESS_LINE }}</span></div>
+          </li>
+          <li>
+            <span class="quote__ico">{{ icon('clock') }}</span>
+            <div><strong>Hours</strong><span>{{ cfg.OPENING_HOURS_TEXT }}</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <form class="quote__form reveal" id="quoteForm" novalidate>
+        <div class="field">
+          <label for="qName">Your name <span aria-hidden="true">*</span></label>
+          <input id="qName" name="name" type="text" autocomplete="name" required placeholder="e.g. Ashutosh Kumar">
+          <p class="field__err" data-err-for="qName"></p>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="qCompany">Company</label>
+            <input id="qCompany" name="company" type="text" autocomplete="organization" placeholder="Optional">
+          </div>
+          <div class="field">
+            <label for="qPhone">Phone / WhatsApp <span aria-hidden="true">*</span></label>
+            <input id="qPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="10-digit number">
+            <p class="field__err" data-err-for="qPhone"></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="qProduct">What do you need?</label>
+          <select id="qProduct" name="product">
+            {%- for opt in product_options %}
+            <option>{{ opt }}</option>
+            {%- endfor %}
+          </select>
+        </div>
+
+        <fieldset class="field">
+          <legend>Box size (mm or inches)</legend>
+          <div class="dims">
+            <input id="qL" name="length" type="text" inputmode="decimal" placeholder="Length" aria-label="Length">
+            <span aria-hidden="true">×</span>
+            <input id="qB" name="breadth" type="text" inputmode="decimal" placeholder="Breadth" aria-label="Breadth">
+            <span aria-hidden="true">×</span>
+            <input id="qH" name="height" type="text" inputmode="decimal" placeholder="Height" aria-label="Height">
+          </div>
+        </fieldset>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="qQty">Quantity needed</label>
+            <input id="qQty" name="qty" type="text" inputmode="numeric" placeholder="e.g. 5000 / month">
+          </div>
+          <div class="field">
+            <label for="qPly">Ply preference</label>
+            <select id="qPly" name="ply">
+              {%- for opt in ply_options %}
+              <option>{{ opt }}</option>
+              {%- endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="qMsg">Anything else?</label>
+          <textarea id="qMsg" name="message" rows="3" placeholder="What goes inside, weight per box, printing needs, delivery city…"></textarea>
+        </div>
+
+        <div class="quote__actions">
+          <button class="btn btn--wa btn--lg" type="submit" data-send="whatsapp">
+            {{ wa_icon() }}
+            Send on WhatsApp
+          </button>
+          <button class="btn btn--ghost btn--lg" type="button" data-send="email">
+            {{ icon('mail') }}
+            Send by email
+          </button>
+        </div>
+
+        <p class="quote__fineprint">
+          Your details go straight to us — nothing is stored on this website.
+        </p>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+</main>
+{% endblock %}

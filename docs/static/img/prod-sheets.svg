@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Corrugated sheets, partition dividers and layer pads">
+  <defs>
+    <linearGradient id="sTop" x1="0" y1="0" x2=".6" y2="1">
+      <stop offset="0" stop-color="#F2E1C4"/><stop offset="1" stop-color="#DFC79E"/>
+    </linearGradient>
+    <linearGradient id="sEdgeL" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DBC098"/><stop offset="1" stop-color="#C2A374"/>
+    </linearGradient>
+    <linearGradient id="sEdgeR" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C09E6D"/><stop offset="1" stop-color="#A5854F"/>
+    </linearGradient>
+    <pattern id="fluteEdge" width="8" height="5" patternUnits="userSpaceOnUse">
+      <path d="M0 2.5q2-2.6 4 0t4 0" fill="none" stroke="#87683A" stroke-width="1.1" opacity=".6"/>
+    </pattern>
+  </defs>
+
+  <ellipse cx="240" cy="316" rx="132" ry="15" fill="#B3966D" opacity=".2"/>
+
+  <g stroke="#9B7A4A" stroke-width="1.4" stroke-linejoin="round">
+
+    <!-- ── stack of flat sheets (bottom) ───────────────── -->
+    <!-- five sheets, each 10px of thickness apart -->
+    <g>
+      <path d="M240 236 350 291 240 346 130 291Z" fill="url(#sTop)" transform="translate(0,-44)"/>
+      <path d="M130 247 130 255 240 310 240 302Z" fill="url(#sEdgeL)" transform="translate(0,-44)"/>
+      <path d="M350 247 350 255 240 310 240 302Z" fill="url(#sEdgeR)" transform="translate(0,-44)"/>
+    </g>
+    <g transform="translate(0,-9)">
+      <path d="M240 192 350 247 240 302 130 247Z" fill="url(#sTop)"/>
+      <path d="M130 247 130 255 240 310 240 302Z" fill="url(#sEdgeL)"/>
+      <path d="M350 247 350 255 240 310 240 302Z" fill="url(#sEdgeR)"/>
+      <path d="M130 247 130 255 240 310 240 302Z" fill="url(#fluteEdge)" stroke="none"/>
+    </g>
+    <g transform="translate(0,1)">
+      <path d="M240 192 350 247 240 302 130 247Z" fill="url(#sTop)"/>
+      <path d="M130 247 130 255 240 310 240 302Z" fill="url(#sEdgeL)"/>
+      <path d="M350 247 350 255 240 310 240 302Z" fill="url(#sEdgeR)"/>
+      <path d="M130 247 130 255 240 310 240 302Z" fill="url(#fluteEdge)" stroke="none"/>
+    </g>
+    <g transform="translate(0,11)">
+      <path d="M240 192 350 247 240 302 130 247Z" fill="url(#sTop)"/>
+      <path d="M130 247 130 255 240 310 240 302Z" fill="url(#sEdgeL)"/>
+      <path d="M350 247 350 255 240 310 240 302Z" fill="url(#sEdgeR)"/>
+      <path d="M130 247 130 255 240 310 240 302Z" fill="url(#fluteEdge)" stroke="none"/>
+    </g>
+
+    <!-- ── slotted partition grid, standing on the stack ─
+         -16 lands the wall bottoms on the top sheet's face; larger offsets
+         leave the assembly visibly floating. -->
+    <g transform="translate(0,-16)">
+      <!-- long walls running to the lower-right -->
+      <g fill="url(#sEdgeL)">
+        <path d="M172 152 258 195 258 233 172 190Z"/>
+        <path d="M196 140 282 183 282 221 196 178Z"/>
+        <path d="M220 128 306 171 306 209 220 166Z"/>
+      </g>
+      <!-- cross walls running to the lower-left -->
+      <g fill="url(#sEdgeR)" opacity=".95">
+        <path d="M258 129 200 158 200 196 258 167Z"/>
+        <path d="M282 141 224 170 224 208 282 179Z"/>
+      </g>
+      <!-- top rims catch the light -->
+      <g fill="url(#sTop)" stroke="#9B7A4A" stroke-width="1.2">
+        <path d="M172 152 178 149 264 192 258 195Z"/>
+        <path d="M196 140 202 137 288 180 282 183Z"/>
+        <path d="M220 128 226 125 312 168 306 171Z"/>
+      </g>
+    </g>
+
+    <!-- ── layer pad leaning against the stack, left ───── -->
+    <g transform="translate(-8,6)">
+      <path d="M62 196 118 224 118 300 62 272Z" fill="url(#sTop)"/>
+      <path d="M62 272 118 300 118 308 62 280Z" fill="url(#sEdgeR)"/>
+      <path d="M62 196 68 193 124 221 118 224Z" fill="#EFDCBA"/>
+      <path d="M118 224 124 221 124 297 118 300Z" fill="url(#fluteEdge)" stroke="none"/>
+      <path d="M118 224 124 221 124 297 118 300Z" fill="none" stroke="#9B7A4A" stroke-width="1.2"/>
+    </g>
+
+    <!-- ── moulded tray, right ─────────────────────────── -->
+    <g transform="translate(6,0)">
+      <path d="M392 210 448 238 392 266 336 238Z" fill="url(#sTop)"/>
+      <path d="M336 238 336 258 392 286 392 266Z" fill="url(#sEdgeL)"/>
+      <path d="M448 238 448 258 392 286 392 266Z" fill="url(#sEdgeR)"/>
+      <!-- recessed cells -->
+      <g fill="#C9AB7C" stroke="#A2823F" stroke-width="1">
+        <path d="M378 224 406 238 378 252 350 238Z"/>
+        <path d="M406 238 434 252 406 266 378 252Z" opacity=".85"/>
+        <path d="M350 238 378 252 350 266 322 252Z" opacity=".6" transform="translate(28,0)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,29 +1,20 @@
 /* ==========================================================================
    Lucè Packaging — site script
    --------------------------------------------------------------------------
-   ▶ EDIT ONLY THE `CONFIG` BLOCK BELOW to put your real details live.
-     Everything on the page (top bar, quote section, footer, WhatsApp button)
-     reads from here, so you change each detail exactly once.
+   Do NOT put contact details in this file. They live in config.py and are
+   rendered into the page by build.py, which also hands the few values this
+   script needs to `window.LUCE`. Edit config.py, then run:
+
+       python build.py
+
    ========================================================================== */
 
-const CONFIG = {
-  // Your WhatsApp number in FULL INTERNATIONAL FORM: country code, digits only.
-  // India example: 91 followed by the 10-digit number → "919876543210"
-  whatsapp: '919999999999',
-
-  // How the phone number should be *displayed* on the page.
-  phoneDisplay: '+91 99999 99999',
-
-  // What the phone link should dial (digits, + and - only).
-  phoneDial: '+919999999999',
-
-  email: 'hello@luce-packaging.com',
-
-  address: 'Plot No. 00, Industrial Area, Your City',
-
-  // Prefix line for the WhatsApp / email message.
-  companyName: 'Lucè Packaging'
-};
+// Injected by templates/base.html. The fallback only matters if this file is
+// opened outside a built page.
+const CONFIG = Object.assign(
+  { whatsapp: '', email: '', company: 'Lucè Packaging', waValid: false },
+  window.LUCE || {}
+);
 
 /* ========================================================================== */
 
@@ -34,37 +25,6 @@ const CONFIG = {
 
   const $  = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
-
-  /* ---------------------------------------------------------------- contacts
-     Push CONFIG into every [data-contact] slot in the markup.            */
-  function applyContacts() {
-    const waLink = `https://wa.me/${CONFIG.whatsapp}`;
-
-    const setters = {
-      'phone':     el => { el.textContent = CONFIG.phoneDisplay; },
-      'email':     el => { el.textContent = CONFIG.email; },
-      'address':   el => { el.textContent = CONFIG.address; },
-      'tel-href':  el => { el.href = `tel:${CONFIG.phoneDial.replace(/[^\d+]/g, '')}`; },
-      'mail-href': el => { el.href = `mailto:${CONFIG.email}`; },
-      'wa-href':   el => { el.href = waLink; el.target = '_blank'; el.rel = 'noopener'; }
-    };
-
-    $$('[data-contact]').forEach(el => {
-      const fn = setters[el.dataset.contact];
-      if (fn) fn(el);
-    });
-
-    // Keep the JSON-LD phone/email honest too.
-    const ld = $('script[type="application/ld+json"]');
-    if (ld) {
-      try {
-        const data = JSON.parse(ld.textContent);
-        data.telephone = CONFIG.phoneDial;
-        data.email = CONFIG.email;
-        ld.textContent = JSON.stringify(data);
-      } catch (err) { /* malformed JSON-LD is not worth breaking the page over */ }
-    }
-  }
 
   /* ------------------------------------------------------------------- header
      Shadow once scrolled, and keep anchor jumps clear of the sticky bar.
@@ -281,12 +241,16 @@ const CONFIG = {
       ].filter(([, v]) => v);
 
       const body = rows.map(([k, v]) => `${k}: ${v}`).join('\n');
-      return `New packaging enquiry — ${CONFIG.companyName}\n\n${body}`;
+      return `New packaging enquiry — ${CONFIG.company}\n\n${body}`;
     };
 
     const send = mode => {
       if (!validate()) return;
       const message = buildMessage();
+
+      // No usable WhatsApp number configured — send by email rather than
+      // opening a wa.me link that goes nowhere.
+      if (mode === 'whatsapp' && !CONFIG.waValid) mode = 'email';
 
       if (mode === 'whatsapp') {
         const url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
@@ -311,31 +275,16 @@ const CONFIG = {
     if (emailBtn) emailBtn.addEventListener('click', () => send('email'));
   }
 
-  /* ------------------------------------------------------------------- misc */
-  function initMisc() {
-    const year = $('#year');
-    if (year) year.textContent = String(new Date().getFullYear());
-
-    // The floating button lands on WhatsApp; without a number set, send it
-    // to the quote form instead of a broken chat link.
-    if (!/^\d{10,15}$/.test(CONFIG.whatsapp)) {
-      $$('[data-contact="wa-href"]').forEach(el => {
-        el.href = '#quote';
-        el.removeAttribute('target');
-      });
-    }
-  }
-
-  /* ------------------------------------------------------------------- boot */
+  /* ------------------------------------------------------------------- boot
+     Contact details, the copyright year and the WhatsApp link fallback are all
+     resolved by build.py at build time, so there is nothing to patch here. */
   function init() {
-    applyContacts();
     initHeader();
     initNav();
     initActiveLink();
     initReveal();
     initCounters();
     initForm();
-    initMisc();
   }
 
   if (document.readyState === 'loading') {

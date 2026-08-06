@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 170" width="560" height="170" role="img" aria-label="Lucè">
+  <!--
+    Standalone Lucè lockup, rebuilt as vector so it stays crisp at any size.
+    Text uses Poppins with system fallbacks; for a font-independent file,
+    convert the <text> element to outlines in your editor before sharing.
+  -->
+  <g transform="translate(14 22)">
+    <g stroke="#C07A18" stroke-width="4.4" stroke-linecap="round">
+      <line x1="52" y1="2"   x2="52" y2="18"/>
+      <line x1="52" y1="86"  x2="52" y2="102"/>
+      <line x1="2"  y1="52"  x2="18" y2="52"/>
+      <line x1="86" y1="52"  x2="102" y2="52"/>
+      <line x1="17" y1="17"  x2="29" y2="29"/>
+      <line x1="75" y1="75"  x2="87" y2="87"/>
+      <line x1="17" y1="87"  x2="29" y2="75"/>
+      <line x1="75" y1="29"  x2="87" y2="17"/>
+    </g>
+    <ellipse cx="52" cy="52" rx="27" ry="29" fill="#D9902A"/>
+  </g>
+
+  <text x="140" y="105" font-family="Poppins, Manrope, Century Gothic, Arial, sans-serif"
+        font-size="104" font-weight="400" fill="#17130F" letter-spacing="-1">Luc<tspan fill="#1479C4">è</tspan></text>
+
+  <rect x="60" y="150" width="470" height="7" rx="3.5" fill="#A9A9A9"/>
+</svg>

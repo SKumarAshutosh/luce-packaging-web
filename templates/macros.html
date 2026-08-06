@@ -1,0 +1,79 @@
+{#
+  Reusable snippets. Import at the top of a template with:
+      {% from "macros.html" import icon, amp, sun %}
+#}
+
+{#
+  Fraunces renders "&" as a decorative swash at display optical sizes, which
+  reads as a symbol rather than an ampersand. Any heading in the serif face
+  runs its text through this so the "&" falls back to the body font.
+  Everything else is escaped normally.
+#}
+{%- macro amp(text) -%}
+  {%- set parts = text.split('&') -%}
+  {%- for part in parts -%}
+    {{- part -}}
+    {%- if not loop.last -%}<span class="amp">&amp;</span>{%- endif -%}
+  {%- endfor -%}
+{%- endmacro -%}
+
+
+{# ---- The Lucè sun mark. `rays` recolours the rays for dark backgrounds. -- #}
+{%- macro sun(cls='logo__sun', rays='#C07A18', animate=True) -%}
+<svg class="{{ cls }}" viewBox="0 0 64 64" aria-hidden="true">
+  <g{% if animate %} class="logo__rays"{% endif %} stroke="{{ rays }}" stroke-width="2.6" stroke-linecap="round">
+    <line x1="32" y1="4"  x2="32" y2="12"/>
+    <line x1="32" y1="52" x2="32" y2="60"/>
+    <line x1="4"  y1="32" x2="12" y2="32"/>
+    <line x1="52" y1="32" x2="60" y2="32"/>
+    <line x1="12" y1="12" x2="18" y2="18"/>
+    <line x1="46" y1="46" x2="52" y2="52"/>
+    <line x1="12" y1="52" x2="18" y2="46"/>
+    <line x1="46" y1="18" x2="52" y2="12"/>
+  </g>
+  <ellipse cx="32" cy="32" rx="17" ry="18" fill="#D9902A"/>
+</svg>
+{%- endmacro -%}
+
+
+{# ---- The full logo lockup (sun + wordmark) ------------------------------ #}
+{%- macro logo(href='#top', cls='', rays='#C07A18') -%}
+<a class="logo{% if cls %} {{ cls }}{% endif %}" href="{{ href }}" aria-label="Lucè — home">
+  {{ sun(rays=rays) }}
+  <span class="logo__word">Luc<span class="logo__accent">è</span></span>
+</a>
+{%- endmacro -%}
+
+
+{# ---- Line-art icons, referenced by name from content.py ---------------- #}
+{%- macro icon(name, cls='ico') -%}
+{%- set paths = {
+  'arrow':   '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
+  'phone':   '<path d="M4 4h4l2 5-2.5 1.5a12 12 0 0 0 6 6L15 14l5 2v4a15 15 0 0 1-16-16Z"/>',
+  'mail':    '<path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/>',
+  'pin':     '<path d="M12 21c5-4 8-7.5 8-11a8 8 0 1 0-16 0c0 3.5 3 7 8 11Z"/><circle cx="12" cy="10" r="2.5"/>',
+  'clock':   '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  'box':     '<path d="M3 8l9-5 9 5-9 5-9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/>',
+  'shield':  '<path d="M12 3s7 3 7 9-7 9-7 9-7-3-7-9 7-9 7-9Z"/><path d="M9 12l2 2 4-4"/>',
+  'factory': '<path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-6h6v6"/>',
+  'leaf':    '<path d="M12 21c5-4 8-7.5 8-11a8 8 0 1 0-16 0c0 3.5 3 7 8 11Z"/><path d="M12 4c0 5-4 6-4 10"/>',
+  'chart':   '<path d="M3 17h4l3-9 3 13 3-8 2 4h3"/>',
+  'insta':   '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.2" fill="currentColor" stroke="none"/>',
+  'linkedin':'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4"/>',
+  'facebook':'<path d="M14 9h3V5h-3a4 4 0 0 0-4 4v2H8v4h2v6h4v-6h3l1-4h-4V9Z"/>',
+  'chat':    '<path d="M12 2a10 10 0 0 0-8.7 15L2 22l5.1-1.3A10 10 0 1 0 12 2Z"/>'
+} -%}
+{#- |safe is required here: these are SVG path fragments, and autoescape would
+    otherwise print them as visible text instead of drawing the icon. -#}
+<svg class="{{ cls }}" viewBox="0 0 24 24" aria-hidden="true">{{ paths.get(name, '')|safe }}</svg>
+{%- endmacro -%}
+
+
+{# ---- WhatsApp glyph with the white handset knocked out ----------------- #}
+{%- macro wa_icon(cls='ico ico--wa', handset='#fff') -%}
+<svg class="{{ cls }}" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M12 2a10 10 0 0 0-8.7 15L2 22l5.1-1.3A10 10 0 1 0 12 2Z"/>
+  <path d="M8.5 7.8c.4-.1.8 0 1 .4l.7 1.4c.2.3.1.7-.1.9l-.5.5c-.2.2-.2.4-.1.6a6 6 0 0 0 2.5 2.5c.2.1.5.1.6-.1l.5-.5c.2-.2.6-.3.9-.1l1.4.7c.4.2.5.6.4 1-.2.9-1 1.6-2 1.6-3.3 0-7-3.7-7-7 0-1 .7-1.8 1.7-2Z"
+        fill="{{ handset }}" stroke="none"/>
+</svg>
+{%- endmacro -%}

@@ -1,0 +1,136 @@
+{%- from "macros.html" import icon, logo, sun, wa_icon -%}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Dropped immediately so scroll-reveal styles only apply when JS can undo them.
+     If JS is blocked, .no-js stays and all content renders visible. -->
+<script>document.documentElement.classList.remove('no-js');</script>
+<title>{% block title %}{{ cfg.SITE_TITLE }}{% endblock %}</title>
+
+<meta name="description" content="{% block description %}{{ cfg.SITE_DESCRIPTION }}{% endblock %}">
+<meta name="keywords" content="{{ cfg.SITE_KEYWORDS }}">
+<meta name="author" content="{{ cfg.COMPANY_NAME }}">
+<meta name="theme-color" content="#D9902A">
+{% block robots %}{% endblock %}
+<link rel="canonical" href="{{ base_url }}/{{ page_path }}">
+
+<!-- Open Graph / social preview. Absolute URLs are required — scrapers cannot
+     resolve relative paths. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ base_url }}/{{ page_path }}">
+<meta property="og:title" content="{{ cfg.OG_TITLE }}">
+<meta property="og:description" content="{{ cfg.OG_DESCRIPTION }}">
+<meta property="og:image" content="{{ base_url }}/{{ cfg.OG_IMAGE }}">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="static/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="static/img/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="static/css/style.css">
+
+<!-- Contact details are rendered into the page by the build, and handed to the
+     script here so the WhatsApp/email composer uses the same single source. -->
+<script>window.LUCE = {{ js_config }};</script>
+
+{% block head_extra %}{% endblock %}
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+{% block topbar %}
+<div class="topbar">
+  <div class="wrap topbar__inner">
+    <p class="topbar__note">
+      <span class="dot" aria-hidden="true"></span>
+      Now accepting bulk orders &amp; custom sizes — quotes within 24 hours
+    </p>
+    <div class="topbar__links">
+      <a href="tel:{{ cfg.PHONE_DIAL }}">{{ icon('phone') }}<span>{{ cfg.PHONE_DISPLAY }}</span></a>
+      <a href="mailto:{{ cfg.EMAIL }}">{{ icon('mail') }}<span>{{ cfg.EMAIL }}</span></a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+<header class="site-head" id="siteHead">
+  <div class="wrap site-head__inner">
+    {{ logo(href=home_href) }}
+    {% block nav %}
+    <nav class="nav" id="nav" aria-label="Main">
+      {%- for label, href in nav %}
+      <a href="{{ href }}">{{ label }}</a>
+      {%- endfor %}
+      <a class="btn btn--sm btn--primary nav__cta" href="#quote">Get a Quote</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+    {% endblock %}
+  </div>
+</header>
+
+{% block main %}{% endblock %}
+
+{% block footer %}
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+
+      <div class="foot-brand">
+        {{ logo(href=home_href, cls='logo--foot', rays='#E0A44A') }}
+        <p>{{ footer_tagline }}</p>
+        <div class="foot-social">
+          <a href="{{ wa_link }}" aria-label="WhatsApp"{% if wa_valid %} target="_blank" rel="noopener"{% endif %}>{{ icon('chat') }}</a>
+          {%- for name, url in social %}
+          <a href="{{ url }}" aria-label="{{ name|capitalize }}" target="_blank" rel="noopener">{{ icon(name) }}</a>
+          {%- endfor %}
+        </div>
+      </div>
+
+      {%- for heading, links in footer_columns %}
+      <nav class="foot-col" aria-label="{{ heading }}">
+        <h4>{{ heading }}</h4>
+        {%- for label, href in links %}
+        <a href="{{ href }}">{{ label }}</a>
+        {%- endfor %}
+      </nav>
+      {%- endfor %}
+
+      <div class="foot-col">
+        <h4>Reach us</h4>
+        <a href="tel:{{ cfg.PHONE_DIAL }}">{{ cfg.PHONE_DISPLAY }}</a>
+        <a href="mailto:{{ cfg.EMAIL }}">{{ cfg.EMAIL }}</a>
+        <span>{{ cfg.ADDRESS_LINE }}</span>
+        <span>{{ cfg.OPENING_HOURS_TEXT }}</span>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <p>&copy; {{ year }} {{ cfg.COMPANY_NAME }}. All rights reserved.</p>
+      {%- if cfg.GSTIN %}
+      <p class="foot-bottom__gst">GSTIN: {{ cfg.GSTIN }}</p>
+      {%- endif %}
+    </div>
+  </div>
+</footer>
+{% endblock %}
+
+{% block wa_float %}
+<a class="wa-float" href="{{ wa_link }}"{% if wa_valid %} target="_blank" rel="noopener"{% endif %} aria-label="Chat with us on WhatsApp">
+  {{ wa_icon(cls='', handset='#128C4A') }}
+  <span>Chat</span>
+</a>
+{% endblock %}
+
+<script src="static/js/main.js" defer></script>
+{% block body_extra %}{% endblock %}
+</body>
+</html>

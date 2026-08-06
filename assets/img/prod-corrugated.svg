@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Stacked plain corrugated shipping cartons">
+  <defs>
+    <linearGradient id="cTop" x1="0" y1="0" x2=".6" y2="1">
+      <stop offset="0" stop-color="#F2E1C4"/><stop offset="1" stop-color="#E1CBA4"/>
+    </linearGradient>
+    <linearGradient id="cLeft" x1="0" y1="0" x2=".3" y2="1">
+      <stop offset="0" stop-color="#DDC49C"/><stop offset="1" stop-color="#C6A97B"/>
+    </linearGradient>
+    <linearGradient id="cRight" x1="0" y1="0" x2=".4" y2="1">
+      <stop offset="0" stop-color="#C4A273"/><stop offset="1" stop-color="#A78754"/>
+    </linearGradient>
+    <pattern id="flute" width="9" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3q2.25-3 4.5 0t4.5 0" fill="none" stroke="#8A6B3C" stroke-width="1.1" opacity=".55"/>
+    </pattern>
+  </defs>
+
+  <g stroke="#9B7A4A" stroke-width="1.5" stroke-linejoin="round">
+
+    <!-- ground shadow -->
+    <ellipse cx="240" cy="312" rx="128" ry="17" fill="#B3966D" opacity=".22" stroke="none"/>
+
+    <!-- ── lower carton ───────────────────────────────── -->
+    <path d="M240 150 335 197.5 240 245 145 197.5Z" fill="url(#cTop)"/>
+    <path d="M145 197.5 145 267.5 240 315 240 245Z" fill="url(#cLeft)"/>
+    <path d="M335 197.5 335 267.5 240 315 240 245Z" fill="url(#cRight)"/>
+
+    <!-- flute edge along the lower carton's top rim -->
+    <path d="M145 197.5 145 205.5 240 253 240 245Z" fill="url(#flute)" stroke="none"/>
+    <path d="M335 197.5 335 205.5 240 253 240 245Z" fill="url(#flute)" stroke="none"/>
+
+    <!-- sealing tape over the top face -->
+    <path d="M192.5 173.75 287.5 221.25 240 245 145 197.5Z" fill="#D9902A" opacity=".2" stroke="none"/>
+    <path d="M192.5 173.75 287.5 221.25" stroke="#C07A18" stroke-width="1" opacity=".45"/>
+
+    <!-- printed marks on the left panel -->
+    <g stroke="none" fill="#7C5F33" opacity=".5">
+      <rect x="163" y="222" width="46" height="4.5" rx="2" transform="rotate(26.6 163 222)"/>
+      <rect x="163" y="234" width="30" height="4.5" rx="2" transform="rotate(26.6 163 234)"/>
+    </g>
+    <!-- "this way up" arrows on the right panel -->
+    <g fill="none" stroke="#6E5228" stroke-width="1.6" opacity=".45" stroke-linecap="round">
+      <path d="M300 232v14M300 232l-4 5M300 232l4 5"/>
+      <path d="M314 225v14M314 225l-4 5M314 225l4 5"/>
+    </g>
+
+    <!-- ── upper carton ───────────────────────────────── -->
+    <path d="M240 118.5 302 149.5 240 180.5 178 149.5Z" fill="url(#cTop)"/>
+    <path d="M178 149.5 178 197.5 240 228.5 240 180.5Z" fill="url(#cLeft)"/>
+    <path d="M302 149.5 302 197.5 240 228.5 240 180.5Z" fill="url(#cRight)"/>
+    <path d="M178 149.5 178 156 240 187 240 180.5Z" fill="url(#flute)" stroke="none"/>
+
+    <!-- open flap hint -->
+    <path d="M209 134 240 149.5 240 180.5 209 165Z" fill="#EADAB8" opacity=".55" stroke="#9B7A4A" stroke-width="1"/>
+
+    <!-- ply badge -->
+    <g stroke="none">
+      <rect x="196" y="196" width="50" height="20" rx="10" fill="#D9902A" transform="rotate(26.6 196 196)"/>
+    </g>
+    <text x="205" y="215" transform="rotate(26.6 205 215)" font-family="Manrope, sans-serif"
+          font-size="11" font-weight="800" fill="#fff" stroke="none" letter-spacing="1">5 PLY</text>
+  </g>
+</svg>

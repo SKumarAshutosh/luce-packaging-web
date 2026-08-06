@@ -1,0 +1,16 @@
+# OS cruft
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Editors / tooling
+.vscode/
+.idea/
+*.swp
+.claude/settings.local.json
+
+# Logs / temp
+*.log
+node_modules/
+.cache/

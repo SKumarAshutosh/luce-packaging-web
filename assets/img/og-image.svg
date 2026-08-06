@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="Lucè — corrugated boxes and premium packaging">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2=".8" y2="1">
+      <stop offset="0" stop-color="#FCFAF6"/><stop offset="1" stop-color="#F2EADC"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".78" cy=".22" r=".5">
+      <stop offset="0" stop-color="#D9902A" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#D9902A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="oTop" x1="0" y1="0" x2=".6" y2="1">
+      <stop offset="0" stop-color="#F2E1C4"/><stop offset="1" stop-color="#E1CBA4"/>
+    </linearGradient>
+    <linearGradient id="oLeft" x1="0" y1="0" x2=".3" y2="1">
+      <stop offset="0" stop-color="#DDC49C"/><stop offset="1" stop-color="#C6A97B"/>
+    </linearGradient>
+    <linearGradient id="oRight" x1="0" y1="0" x2=".4" y2="1">
+      <stop offset="0" stop-color="#C4A273"/><stop offset="1" stop-color="#A78754"/>
+    </linearGradient>
+    <pattern id="oFlute" width="9" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3q2.25-3 4.5 0t4.5 0" fill="none" stroke="#87683A" stroke-width="1.2" opacity=".55"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- corrugated flutes along the bottom edge -->
+  <g opacity=".5">
+    <rect y="600" width="1200" height="30" fill="url(#oFlute)"/>
+  </g>
+
+  <!-- ── logo lockup ─────────────────────────────────── -->
+  <g transform="translate(88 82)">
+    <g stroke="#C07A18" stroke-width="4" stroke-linecap="round">
+      <line x1="34" y1="2"  x2="34" y2="14"/>
+      <line x1="34" y1="54" x2="34" y2="66"/>
+      <line x1="2"  y1="34" x2="14" y2="34"/>
+      <line x1="54" y1="34" x2="66" y2="34"/>
+      <line x1="11" y1="11" x2="20" y2="20"/>
+      <line x1="48" y1="48" x2="57" y2="57"/>
+      <line x1="11" y1="57" x2="20" y2="48"/>
+      <line x1="48" y1="20" x2="57" y2="11"/>
+    </g>
+    <ellipse cx="34" cy="34" rx="18" ry="19.5" fill="#D9902A"/>
+    <text x="86" y="52" font-family="Poppins, Manrope, Arial, sans-serif" font-size="58"
+          font-weight="400" fill="#17130F" letter-spacing="-.5">Luc<tspan fill="#1479C4">è</tspan></text>
+  </g>
+
+  <!-- ── headline ────────────────────────────────────── -->
+  <text x="88" y="268" font-family="Fraunces, Georgia, serif" font-size="62"
+        font-weight="600" fill="#17130F" letter-spacing="-1">Corrugated boxes,</text>
+  <text x="88" y="338" font-family="Fraunces, Georgia, serif" font-size="62"
+        font-weight="600" fill="#17130F" letter-spacing="-1">built to your spec.</text>
+
+  <text x="88" y="398" font-family="Manrope, Arial, sans-serif" font-size="25"
+        font-weight="500" fill="#6B6055">3 to 7 ply · printed premium cartons · sheets &amp; partitions</text>
+  <text x="88" y="434" font-family="Manrope, Arial, sans-serif" font-size="25"
+        font-weight="500" fill="#6B6055">custom die-cut packaging</text>
+
+  <!-- pill row -->
+  <g font-family="Manrope, Arial, sans-serif" font-size="19" font-weight="700">
+    <g>
+      <rect x="88" y="486" width="196" height="46" rx="23" fill="#D9902A"/>
+      <text x="112" y="516" fill="#fff">Quotes in 24 hrs</text>
+    </g>
+    <g>
+      <rect x="300" y="486" width="180" height="46" rx="23" fill="none" stroke="#D6C3A4" stroke-width="2"/>
+      <text x="324" y="516" fill="#3B342C">Any custom size</text>
+    </g>
+  </g>
+
+  <!-- ── isometric box stack, right ──────────────────── -->
+  <g transform="translate(842 300) scale(1.55)" stroke="#9B7A4A" stroke-width="1.6" stroke-linejoin="round">
+    <ellipse cx="0" cy="118" rx="112" ry="14" fill="#B3966D" opacity=".2" stroke="none"/>
+
+    <!-- lower carton -->
+    <path d="M0 -12 84 30 0 72 -84 30Z" fill="url(#oTop)"/>
+    <path d="M-84 30 -84 92 0 134 0 72Z" fill="url(#oLeft)"/>
+    <path d="M84 30 84 92 0 134 0 72Z" fill="url(#oRight)"/>
+    <path d="M-84 30 -84 37 0 79 0 72Z" fill="url(#oFlute)" stroke="none"/>
+    <path d="M84 30 84 37 0 79 0 72Z" fill="url(#oFlute)" stroke="none"/>
+    <!-- tape -->
+    <path d="M-42 9 42 51 0 72 -84 30Z" fill="#D9902A" opacity=".2" stroke="none"/>
+
+    <!-- upper carton -->
+    <path d="M0 -44 54 -17 0 10 -54 -17Z" fill="url(#oTop)"/>
+    <path d="M-54 -17 -54 25 0 52 0 10Z" fill="url(#oLeft)"/>
+    <path d="M54 -17 54 25 0 52 0 10Z" fill="url(#oRight)"/>
+    <path d="M-54 -17 -54 -11 0 16 0 10Z" fill="url(#oFlute)" stroke="none"/>
+
+    <!-- brand mark stencilled on the upper-left panel -->
+    <g transform="matrix(1,0.5,0,1,0,0)" stroke="none">
+      <ellipse cx="-28" cy="14" rx="11" ry="12" fill="#D9902A" opacity=".85"/>
+    </g>
+  </g>
+</svg>

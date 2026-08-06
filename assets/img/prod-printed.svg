@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Multi-colour printed premium gift and mailer boxes">
+  <!--
+    Artwork sitting on an isometric panel is drawn inside a group carrying the
+    matching shear matrix:
+      left  panel → matrix(1, 0.5, 0, 1, 0, 0)   (x, y) → (x, y + 0.5x)
+      right panel → matrix(1,-0.5, 0, 1, 0, 0)   (x, y) → (x, y - 0.5x)
+    Coordinates inside those groups are therefore pre-shear, not screen space.
+  -->
+  <defs>
+    <linearGradient id="pTop" x1="0" y1="0" x2=".6" y2="1">
+      <stop offset="0" stop-color="#FDFBF6"/><stop offset="1" stop-color="#EFE7D8"/>
+    </linearGradient>
+    <linearGradient id="pLeft" x1="0" y1="0" x2=".3" y2="1">
+      <stop offset="0" stop-color="#F6EFE2"/><stop offset="1" stop-color="#E2D6C0"/>
+    </linearGradient>
+    <linearGradient id="pRight" x1="0" y1="0" x2=".4" y2="1">
+      <stop offset="0" stop-color="#E4D8C2"/><stop offset="1" stop-color="#CBBB9D"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".5"/>
+      <stop offset=".55" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="sunG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EBAA45"/><stop offset="1" stop-color="#D9902A"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="240" cy="312" rx="126" ry="16" fill="#B3966D" opacity=".2"/>
+
+  <g stroke="#B9A788" stroke-width="1.5" stroke-linejoin="round">
+
+    <!-- ── main premium box ───────────────────────────── -->
+    <path d="M240 132 338 181 240 230 142 181Z" fill="url(#pTop)"/>
+    <path d="M142 181 142 254 240 303 240 230Z" fill="url(#pLeft)"/>
+    <path d="M338 181 338 254 240 303 240 230Z" fill="url(#pRight)"/>
+
+    <!-- printed colour band + brand mark, left panel -->
+    <path d="M142 199 240 248 240 266 142 217Z" fill="#1479C4" opacity=".88" stroke="none"/>
+    <g transform="matrix(1,0.5,0,1,0,0)" stroke="none">
+      <ellipse cx="178" cy="146" rx="11.5" ry="12.5" fill="url(#sunG)"/>
+    </g>
+    <g transform="matrix(1,0.5,0,1,0,0)" fill="none"
+       stroke="#C07A18" stroke-width="1.7" stroke-linecap="round" opacity=".95">
+      <path d="M178 128v-6M178 164v6M156 146h-6M200 146h6M162 130l4 4M194 162l-4-4M162 162l4-4M194 130l-4 4"/>
+    </g>
+    <!-- wordmark under the band -->
+    <g transform="matrix(1,0.5,0,1,0,0)" stroke="none" fill="#5C5245" opacity=".5">
+      <rect x="150" y="176" width="54" height="5" rx="2.5"/>
+      <rect x="150" y="188" width="34" height="5" rx="2.5"/>
+    </g>
+
+    <!-- foil accent + copy lines, right panel -->
+    <path d="M338 199 240 248 240 259 338 210Z" fill="#D9902A" opacity=".92" stroke="none"/>
+    <g transform="matrix(1,-0.5,0,1,0,0)" stroke="none" fill="#6E6354" opacity=".45">
+      <rect x="256" y="404" width="62" height="5.5" rx="2.75"/>
+      <rect x="256" y="418" width="44" height="5.5" rx="2.75"/>
+      <rect x="256" y="432" width="52" height="5.5" rx="2.75"/>
+    </g>
+    <!-- spot-UV square -->
+    <g transform="matrix(1,-0.5,0,1,0,0)" stroke="none">
+      <rect x="300" y="452" width="22" height="22" rx="4" fill="#1479C4" opacity=".7"/>
+    </g>
+
+    <!-- gloss lamination highlight over the lid -->
+    <path d="M240 132 338 181 240 230 142 181Z" fill="url(#gloss)" stroke="none"/>
+
+    <!-- ── small printed mailer, front left ───────────── -->
+    <path d="M118 218 168 243 118 268 68 243Z" fill="url(#pTop)"/>
+    <path d="M68 243 68 283 118 308 118 268Z" fill="url(#pLeft)"/>
+    <path d="M168 243 168 283 118 308 118 268Z" fill="url(#pRight)"/>
+    <path d="M68 253 118 278 118 289 68 264Z" fill="#1479C4" opacity=".8" stroke="none"/>
+    <g transform="matrix(1,-0.5,0,1,0,0)" stroke="none">
+      <ellipse cx="143" cy="343" rx="7" ry="7.5" fill="#D9902A"/>
+    </g>
+
+    <!-- ── small rigid orange gift box, front right ───── -->
+    <path d="M366 214 412 237 366 260 320 237Z" fill="#E5A03A"/>
+    <path d="M320 237 320 272 366 295 366 260Z" fill="#C07A18"/>
+    <path d="M366 260 412 237 412 272 366 295Z" fill="#A5660F"/>
+    <!-- ribbon across the lid -->
+    <path d="M343 225.5 389 248.5 366 260 320 237Z" fill="#fff" opacity=".28" stroke="none"/>
+    <g transform="matrix(1,0.5,0,1,0,0)" stroke="none">
+      <ellipse cx="337" cy="90" rx="7" ry="7.5" fill="#FDF4E4" opacity=".9"/>
+    </g>
+  </g>
+</svg>

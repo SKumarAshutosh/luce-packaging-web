@@ -20,7 +20,7 @@ so you change each detail exactly once and then run:
 WHATSAPP = "919999999999"
 
 # How the phone number should be *displayed* on the page.
-PHONE_DISPLAY = "+91 99999 99999"
+PHONE_DISPLAY = "+91 9691534797"
 
 # What the call button should actually dial.
 PHONE_DIAL = "+919999999999"

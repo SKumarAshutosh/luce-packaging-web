@@ -30,7 +30,7 @@ go live:
 
 ```python
 WHATSAPP      = "919999999999"                 # country code + number, digits only
-PHONE_DISPLAY = "+91 99999 99999"              # how it looks on the page
+PHONE_DISPLAY = "+91 9691534797"              # how it looks on the page
 PHONE_DIAL    = "+919999999999"                # what the call button dials
 EMAIL         = "hello@luce-packaging.com"
 ADDRESS_LINE  = "Plot No. 00, Industrial Area, Your City"
